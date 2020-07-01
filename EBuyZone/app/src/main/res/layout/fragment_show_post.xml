@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".ShowPost"
+    tools:showIn="@layout/fragment_show_post">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F3F3F3"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="2dp">
+
+
+
+        <TextView
+            android:id="@+id/vshow_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="name"
+            android:textSize="36sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/vshow_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="address"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/order_deliver"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Order Deliver"
+            android:layout_marginBottom="5dp"/>
+
+        <Button
+            android:id="@+id/order_cancelled"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Order Cancelled" />
+
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>
