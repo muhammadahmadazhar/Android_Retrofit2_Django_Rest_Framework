@@ -33,7 +33,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_first_name"
         android:background="#11000000"
-        android:text="TextView"
         android:textSize="20sp" />
 
     <TextView
@@ -51,7 +50,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_last_name"
         android:background="#11000000"
-        android:text="TextView"
         android:textSize="20sp" />
 
     <TextView
@@ -69,7 +67,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_username"
         android:background="#11000000"
-        android:text="TextView"
         android:textSize="20sp" />
 
     <TextView
@@ -87,7 +84,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_email"
         android:background="#11000000"
-        android:text="TextView"
         android:textSize="15sp"
         android:autoLink="email"/>
 

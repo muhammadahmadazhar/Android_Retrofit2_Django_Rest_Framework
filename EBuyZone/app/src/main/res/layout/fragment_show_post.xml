@@ -21,7 +21,6 @@
             android:id="@+id/vshow_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="name"
             android:textSize="36sp"
             android:textStyle="bold" />
 
@@ -29,8 +28,7 @@
             android:id="@+id/vshow_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="address"
-            android:textSize="18sp" />
+            android:textSize="17dp" />
 
         <Button
             android:id="@+id/order_deliver"

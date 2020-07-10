@@ -24,8 +24,8 @@ import retrofit2.http.Path;
 
 public interface PostApi {
 
-
-    String root = "http://192.168.10.2:8000/";
+    String root = "https://muhammadahmadazhar16.pythonanywhere.com/";
+//    String root = "http://192.168.10.2:8000/";
 //    String root = "http://127.0.0.1:8000/";
 
 
@@ -33,24 +33,12 @@ public interface PostApi {
     String BASE_URL = base_local + "account/";
     String API_URL = root + "api/v1/";
 
-
+    String Base = root + "android/";
+    String img = root + "image/";
 
 
     @POST("api-token-auth/")
     Call<User> login(@Body Login login);
-
-//    @GET("post/list/")
-//    Call<List<PostModel>> getListPost();
-//
-//    @GET("post/{order_id}/")
-//    Call<PostModel> getPost(@Path(value = "order_id", encoded = true) String id);
-//
-//    @DELETE("post/delete/{order_id}/")
-//    Call<List<PostModel>> deletePost(@Header("Authorization")  String authToken, @Path(value = "order_id", encoded = true) String id);
-
-
-    String Base = root + "android/";
-    String img = root + "image/";
 
     @GET("orders/{order_id}/")
     Call<PostModel> getPost(@Path(value = "order_id", encoded = true) String id);
@@ -70,7 +58,14 @@ public interface PostApi {
     @GET("showPhoto/")
     Call<Photo> getPhoto(@Header("Authorization")  String authToken);
 
-    @Multipart
-    @PUT("editPhoto/")
-    Call<RequestBody>  uploadFile(@Part MultipartBody.Part file);
+    //    @GET("post/list/")
+//    Call<List<PostModel>> getListPost();
+//
+//    @GET("post/{order_id}/")
+//    Call<PostModel> getPost(@Path(value = "order_id", encoded = true) String id);
+//
+//    @DELETE("post/delete/{order_id}/")
+//    Call<List<PostModel>> deletePost(@Header("Authorization")  String authToken, @Path(value = "order_id", encoded = true) String id);
+
+
 }

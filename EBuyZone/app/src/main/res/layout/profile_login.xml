@@ -32,7 +32,8 @@
             android:background="#11000000"
             android:drawableStart="@drawable/ic_action_lock_light"
             android:textSize="25sp"
-            android:hint="password" />
+            android:hint="password"
+            android:inputType="numberPassword"/>
 
         <Button
             android:id="@+id/login_button"

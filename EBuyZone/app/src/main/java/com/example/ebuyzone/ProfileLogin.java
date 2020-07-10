@@ -1,5 +1,6 @@
 package com.example.ebuyzone;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -26,7 +27,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class ProfileLogin extends Fragment  implements View.OnClickListener {
-
+    private ProgressDialog progressDialog;
 
     EditText Edreg_username;
     EditText Edreg_password;
@@ -48,7 +49,7 @@ public class ProfileLogin extends Fragment  implements View.OnClickListener {
         Edreg_username = (EditText) rootView.findViewById(R.id.reg_username);
         Edreg_password = (EditText) rootView.findViewById(R.id.reg_password);
 
-
+        progressDialog = new ProgressDialog(getActivity());
 
         logBtn.setOnClickListener(this);
 
@@ -99,7 +100,8 @@ public class ProfileLogin extends Fragment  implements View.OnClickListener {
 
 
     private void login(){
-
+        progressDialog.setMessage("Loging in Progress");
+        progressDialog.show();
 
         Retrofit.Builder builder = new Retrofit.Builder()
                 .baseUrl(PostApi.Base)
@@ -128,7 +130,7 @@ public class ProfileLogin extends Fragment  implements View.OnClickListener {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if(response.isSuccessful()){
-
+                    progressDialog.dismiss();
 
                     if (response.body() != null) {
 
@@ -160,6 +162,7 @@ public class ProfileLogin extends Fragment  implements View.OnClickListener {
             @Override
             public void onFailure(Call<User> call, Throwable t) {
                 Toast.makeText(getActivity(), "error :(", Toast.LENGTH_SHORT).show();
+                progressDialog.dismiss();
             }
         });
     }

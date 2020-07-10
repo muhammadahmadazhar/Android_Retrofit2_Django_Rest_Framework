@@ -1,12 +1,13 @@
 package com.example.ebuyzone;
 
 import android.os.Bundle;
-
+import android.app.ProgressDialog;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -26,7 +27,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class Home extends Fragment {
-
+    private ProgressDialog progressDialog;
 
     private ArrayList<Integer> pkPost = new ArrayList<>();
     private ArrayList<String> namePost = new ArrayList<>();
@@ -42,6 +43,8 @@ public class Home extends Fragment {
 
         recyclerView = rootView.findViewById(R.id.recycler_category_list);
 
+        progressDialog = new ProgressDialog(getActivity());
+
         if ( InternetUtil.isInternetOnline(getActivity()) ){
             ClearList();
             showAllPosts();
@@ -56,7 +59,8 @@ public class Home extends Fragment {
     }
 
     private void showAllPosts() {
-
+        progressDialog.setMessage("Fetching Orders");
+        progressDialog.show();
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(PostApi.Base)
@@ -72,6 +76,7 @@ public class Home extends Fragment {
 
 
                 if(response.isSuccessful()){
+                    progressDialog.dismiss();
 
                     if (response.body() != null) {
                         List<PostModel> postList = response.body();
@@ -98,7 +103,9 @@ public class Home extends Fragment {
 
             @Override
             public void onFailure(Call<List<PostModel>> call, Throwable t) {
+                Toast.makeText(getActivity(), "error :(", Toast.LENGTH_SHORT).show();
                 Log.d("fail", t.getMessage() == null ? "" : t.getMessage());
+                progressDialog.dismiss();
             }
 
         });

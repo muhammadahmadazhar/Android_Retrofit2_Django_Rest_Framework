@@ -1,5 +1,6 @@
 package com.example.ebuyzone;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -32,6 +33,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ShowProfile extends Fragment {
+    private ProgressDialog progressDialog;
     TextView tv_username;
     TextView tv_email;
     TextView tv_first_name;
@@ -53,7 +55,7 @@ public class ShowProfile extends Fragment {
         tv_email = (TextView) rootView.findViewById(R.id.profile_email);
         tv_first_name = (TextView) rootView.findViewById(R.id.profile_first_name);
         tv_last_name = (TextView) rootView.findViewById(R.id.profile_last_name);
-
+        progressDialog = new ProgressDialog(getActivity());
 
            String user = SharedDataGetSet.getMySavedUsername(getActivity());
             GetServerData(user);
@@ -75,7 +77,8 @@ public class ShowProfile extends Fragment {
     }
 
     private void GetServerData(String user) {
-
+        progressDialog.setMessage("Loading Profile");
+        progressDialog.show();
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(PostApi.Base)
@@ -92,6 +95,7 @@ public class ShowProfile extends Fragment {
             public void onResponse(Call<Profile> call, Response<Profile> response) {
 
                 if (response.isSuccessful()) {
+                    progressDialog.dismiss();
 
                     if (response.body() != null) {
 
@@ -118,6 +122,8 @@ public class ShowProfile extends Fragment {
             @Override
             public void onFailure(Call<Profile> call, Throwable t) {
                 Log.d("fail", t.getMessage() == null ? "" : t.getMessage());
+                Toast.makeText(getActivity(), "error :(", Toast.LENGTH_SHORT).show();
+                progressDialog.dismiss();
             }
         });
 
